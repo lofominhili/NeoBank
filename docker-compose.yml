@@ -1,8 +1,8 @@
 services:
   calculator-service:
-    image: ${IMAGE}:${TAG}
+    image: ghcr.io/lofominhili/neobank:latest
     container_name: calculator
-    restart: unless-failure
+    restart: on-failure
     environment:
       SERVER_PORT: ${SERVER_PORT}
       LOAN_BASE_RATE: ${LOAN_BASE_RATE}
