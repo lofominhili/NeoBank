@@ -1,0 +1,11 @@
+services:
+  calculator-service:
+    image: ${IMAGE}:${TAG}
+    container_name: calculator
+    restart: unless-failure
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      LOAN_BASE_RATE: ${LOAN_BASE_RATE}
+      LOAN_INSURANCE_DISCOUNT: ${LOAN_INSURANCE_DISCOUNT}
+      LOAN_SALARY_CLIENT_DISCOUNT: ${LOAN_SALARY_CLIENT_DISCOUNT}
+      LOAN_INSURANCE_COST: ${LOAN_INSURANCE_COST}
