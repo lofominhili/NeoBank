@@ -1,0 +1,26 @@
+name: ci
+run-name: Workflow ${{ github.workflow }} triggered by @${{ github.actor }}
+on:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Pull git repository
+        uses: actions/checkout@v4.1.5
+      - name: Set up JDK and Maven
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 21.0.5
+          distribution: liberica
+      - name: Run tests
+        run: mvn -f ./Calculator/pom.xml clean test
+        env:
+          SERVER_PORT: ${{ vars.SERVER_PORT }}
+          LOAN_BASE_RATE: ${{ vars.LOAN_BASE_RATE }}
+          LOAN_INSURANCE_DISCOUNT: ${{ vars.LOAN_INSURANCE_DISCOUNT }}
+          LOAN_SALARY_CLIENT_DISCOUNT: ${{ vars.LOAN_SALARY_CLIENT_DISCOUNT }}
+          LOAN_INSURANCE_COST: ${{ vars.LOAN_INSURANCE_COST }}
