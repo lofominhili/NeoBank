@@ -10,7 +10,7 @@ RUN mvn clean package -DskipTests
 
 FROM ${JAVA_IMAGE} AS layer_builder
 WORKDIR /app
-COPY target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
 FROM ${JAVA_IMAGE} AS extractor
