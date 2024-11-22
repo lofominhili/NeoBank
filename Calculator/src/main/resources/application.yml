@@ -1,0 +1,16 @@
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: /api/calculator
+spring:
+  application:
+    name: Calculator
+  jackson:
+    default-property-inclusion: non_null
+    mapper:
+      accept-case-insensitive-enums: true
+loan:
+  base-rate: ${LOAN_BASE_RATE}
+  insurance-discount: ${LOAN_INSURANCE_DISCOUNT}
+  salary-client-discount: ${LOAN_SALARY_CLIENT_DISCOUNT}
+  insurance-cost: ${LOAN_INSURANCE_COST}
