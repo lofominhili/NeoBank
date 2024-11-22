@@ -1,0 +1,5 @@
+loan:
+  base-rate: ${LOAN_BASE_RATE}
+  insurance-discount: ${LOAN_INSURANCE_DISCOUNT}
+  salary-client-discount: ${LOAN_SALARY_CLIENT_DISCOUNT}
+  insurance-cost: ${LOAN_INSURANCE_COST}
