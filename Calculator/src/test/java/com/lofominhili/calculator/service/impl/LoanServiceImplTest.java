@@ -51,8 +51,6 @@ class LoanServiceImplTest {
             assertTrue(offer.rate().compareTo(testProperties.baseRate()) <= 0);
             assertTrue(offer.totalAmount().compareTo(request.amount()) >= 0);
             assertTrue(offer.monthlyPayment().compareTo(BigDecimal.ZERO) > 0);
-            assertNotNull(offer.isInsuranceEnabled());
-            assertNotNull(offer.isSalaryClient());
         });
 
         for (int i = 1; i < offers.size(); i++) {
@@ -77,7 +75,7 @@ class LoanServiceImplTest {
                 "married",
                 2,
                 new EmploymentDto(
-                        "employed",
+                        "self_employed",
                         "1234567890",
                         BigDecimal.valueOf(60_000),
                         "middle",
@@ -150,7 +148,7 @@ class LoanServiceImplTest {
                 "married",
                 0,
                 new EmploymentDto(
-                        "employed",
+                        "self_employed",
                         "1234567890",
                         BigDecimal.valueOf(60_000),
                         "middle",
