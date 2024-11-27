@@ -6,7 +6,6 @@ import com.lofominhili.calculator.dto.LoanStatementRequestDto;
 import com.lofominhili.calculator.dto.ScoringDataDto;
 import com.lofominhili.calculator.dto.basic.SuccessDto;
 import com.lofominhili.calculator.service.LoanService;
-import com.lofominhili.calculator.util.validation.ExperienceValid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -33,7 +32,7 @@ public class CalculatorController {
     public ResponseEntity<SuccessDto<List<LoanOfferDto>>> makeOffers(@Valid @RequestBody LoanStatementRequestDto request) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new SuccessDto<>(
-                        HttpStatus.OK.value(),
+                        HttpStatus.CREATED.value(),
                         "Offers successfully made!",
                         loanService.makeOffers(request)
                 ));

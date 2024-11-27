@@ -23,20 +23,22 @@ public class ScoringServiceImpl implements ScoringService {
         log.info("Начало расчета скоринговой ставки для данных: {}, базовая ставка: {}", scoringData, baseRate);
         applySalaryExperienceRule(scoringData);
 
-        final var adjustedRate = Stream.of(
+        BigDecimal totalAdjustment = Stream.of(
                         applyEmploymentStatusRule(scoringData, baseRate),
                         applyJobPositionRule(scoringData, baseRate),
                         applyMaritalStatusRule(scoringData, baseRate),
                         applyGenderRule(scoringData, baseRate)
                 )
-                .reduce(BigDecimal::add)
-                .orElse(baseRate);
+                .map(result -> result.subtract(baseRate))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal adjustedRate = baseRate.add(totalAdjustment);
 
         log.info("Завершен расчет скоринговой ставки: итоговая ставка: {}", adjustedRate);
         return adjustedRate;
     }
 
-    private void applySalaryExperienceRule (@NotNull final ScoringDataDto scoringData) {
+    private void applySalaryExperienceRule(@NotNull final ScoringDataDto scoringData) {
         final var amount = scoringData.amount();
         final var salary = scoringData.employmentDto().salary();
         final var workExperienceTotal = scoringData.employmentDto().workExperienceTotal();
@@ -44,8 +46,7 @@ public class ScoringServiceImpl implements ScoringService {
         if (amount.compareTo(salary.multiply(BigDecimal.valueOf(24))) > 0) {
             log.error("Сумма кредита превышает 24 зарплаты — отказ в кредите");
             throw CREDIT_ACCESS_DENIED.get("Сумма кредита превышает 24 зарплаты — отказ в кредите");
-        }
-        else if(workExperienceTotal < 18 && workExperienceCurrent < 3){
+        } else if (workExperienceTotal < 18 && workExperienceCurrent < 3) {
             log.error("Недостаточный стаж работы — отказ в кредите");
             throw CREDIT_ACCESS_DENIED.get("Недостаточный стаж работы — отказ в кредите");
         }

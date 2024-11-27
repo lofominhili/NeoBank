@@ -4,7 +4,6 @@ import com.lofominhili.calculator.util.enumeration.Gender;
 import com.lofominhili.calculator.util.enumeration.MaritalStatus;
 import com.lofominhili.calculator.util.validation.AgeValid;
 import com.lofominhili.calculator.util.validation.EnumValid;
-import com.lofominhili.calculator.util.validation.ExperienceValid;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
