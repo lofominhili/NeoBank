@@ -1,5 +1,6 @@
-package com.lofominhili.calculator.util.validation;
+package com.lofominhili.calculator.util.validator;
 
+import com.lofominhili.calculator.util.validation.AgeValid;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "CalculatorController", description = "Controller class that handles loan operations")
+@Tag(name = "CalculatorController", description = "Controller class that handles calculator operations")
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
@@ -33,7 +33,7 @@ public class CalculatorController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new SuccessDto<>(
                         HttpStatus.CREATED.value(),
-                        "Offers successfully made!",
+                        "make offers",
                         loanService.makeOffers(request)
                 ));
     }
@@ -44,7 +44,7 @@ public class CalculatorController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new SuccessDto<>(
                         HttpStatus.OK.value(),
-                        "credit successfully calculated!",
+                        "calc credit",
                         loanService.calculateCredit(scoringData)
                 ));
     }

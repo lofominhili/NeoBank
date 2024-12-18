@@ -1,6 +1,7 @@
-package com.lofominhili.calculator.util.validation;
+package com.lofominhili.calculator.util.validator;
 
 import com.lofominhili.calculator.dto.ScoringDataDto;
+import com.lofominhili.calculator.util.validation.ExperienceValid;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
