@@ -1,4 +1,16 @@
 services:
+  db:
+    image: 'postgres:16'
+    container_name: database
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWOORD}
+      POSTGRES_USER: ${DB_USERNAME}
+    ports:
+      - '5433:5432'
+    volumes:
+      - database:/var/lib/postgresql/data
+
   calculator-service:
     image: ghcr.io/lofominhili/neobank:latest
     container_name: calculator
@@ -9,3 +21,5 @@ services:
       LOAN_INSURANCE_DISCOUNT: ${LOAN_INSURANCE_DISCOUNT}
       LOAN_SALARY_CLIENT_DISCOUNT: ${LOAN_SALARY_CLIENT_DISCOUNT}
       LOAN_INSURANCE_COST: ${LOAN_INSURANCE_COST}
+volumes:
+  database:
