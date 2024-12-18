@@ -78,11 +78,11 @@ public class ScoringServiceImpl implements ScoringService {
         log.debug("Применение правила по позиции на работе: {}, текущая ставка: {}", position, rate);
 
         return switch (position) {
-            case "MIDDLE" -> {
+            case "MID_MANAGER" -> {
                 log.debug("Менеджер среднего звена — ставка уменьшена на 2");
                 yield rate.subtract(BigDecimal.valueOf(2));
             }
-            case "SENIOR" -> {
+            case "TOP_MANAGER" -> {
                 log.debug("Топ-менеджер — ставка уменьшена на 3");
                 yield rate.subtract(BigDecimal.valueOf(3));
             }
